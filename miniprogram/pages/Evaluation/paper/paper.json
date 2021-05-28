@@ -1,0 +1,18 @@
+{
+  "component": true,
+  "navigationBarTitleText": "测评问卷",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "mp-dialog": "weui-miniprogram/dialog/dialog",
+    "van-button": "@vant/weapp/button/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+
+    "mp-cells": "weui-miniprogram/cells/cells",
+    "mp-cell":  "weui-miniprogram/cell/cell",
+    "mp-form":  "weui-miniprogram/form/form",
+    "mp-checkbox": "weui-miniprogram/checkbox/checkbox",
+    "mp-checkbox-group": "weui-miniprogram/checkbox-group/checkbox-group"
+    
+  }
+}

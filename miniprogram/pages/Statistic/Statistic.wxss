@@ -1,0 +1,72 @@
+/* pages/personal/personal.wxss */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.selectDate {
+  color: #448088
+}
+
+.stateChange {
+  border:solid;
+  margin:20rpx;
+  text-align: center;
+  border-width: 4rpx;
+  border-color: #d8d8d8;
+  border-radius: 3%;
+  height:550rpx;
+  width:680rpx;
+  box-shadow: rgb(196, 196, 196) 0rpx 0rpx 3rpx;
+}
+
+.stateCalendar {
+  border:solid;
+  margin:20rpx;
+  text-align: center;
+  border-width: 4rpx;
+  border-color: #d8d8d8;
+  border-radius: 3%;
+  height:700rpx;
+  width:680rpx;
+  box-shadow: rgb(196, 196, 196) 0rpx 0rpx 3rpx;
+}
+
+.stateRecord {
+  border:solid;
+  margin:20rpx;
+  text-align: center;
+  border-width: 4rpx;
+  border-color: #d8d8d8;
+  border-radius: 3%;
+  height:600rpx;
+  width:680rpx;
+  box-shadow: rgb(196, 196, 196) 0rpx 0rpx 3rpx;
+}
+
+.happyThing {
+  border:solid;
+  margin:20rpx;
+  text-align: center;
+  border-width: 4rpx;
+  border-color: #d8d8d8;
+  border-radius: 3%;
+  height:600rpx;
+  width:680rpx;
+  box-shadow: rgb(196, 196, 196) 0rpx 0rpx 3rpx;
+}
+
+.Title {
+  color:#448088;
+  line-height: 80rpx;
+  font-size: 40rpx;
+}
+
+ec-canvas {
+  width: 600rpx;
+  height: 600rpx
+}
+.prevMonth, .nextMonth{
+  font-weight: 700;
+}

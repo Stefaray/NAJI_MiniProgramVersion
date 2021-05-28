@@ -1,0 +1,93 @@
+/* pages/Evaluation/Evaluation.wxss */
+
+.navigatorBra{
+  height: 12vh;
+  background-color: #f5f9fa;
+  width: 750rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit_title{
+
+  margin-top: 3vh;
+  font:normal bolder 3vh "微软雅黑",arial,sans-serif;
+  color: #448088;
+}
+.fiveDimension{
+  width: 609rpx;
+  height: 41vh;
+  border: 7rpx solid #aacfd0;
+  margin: 0 auto;
+  margin-top:2vh;
+  margin-bottom: 1vh;
+  border-radius: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-content: center; */
+}
+.selfEsteem, .nervous, .weekStatus{
+  width: 609rpx;
+  height: 11vh;
+  border: 7rpx solid #aacfd0;
+  margin: 1.3vh auto;
+  border-radius: 1rem;
+  /* margin: 1.3vh; */
+  display: flex;
+  flex-direction: row;
+}
+.fiveCover{
+  width: 400rpx;
+  height: 27vh;
+  margin: 0 auto;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+.title{
+  font:normal bolder 3vh "微软雅黑",arial,sans-serif;
+  margin: 0 auto;
+  margin-bottom: 1vh;
+}
+.fiveDescription{
+  
+  border: 3rpx solid #aacfd0;
+  width: 300rpx;
+  font:normal normal 2vh "微软雅黑",arial,sans-serif;
+  margin: 0 auto;
+  justify-content: center;
+  display: flex;
+  border-radius: 1rem;
+}
+
+.cover{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.imageCover{
+  /* margin-left: 3vh; */
+  margin-top: 0.7vh;
+  width: 10vh;
+  height: 10vh;
+  border-radius: 5%;
+  margin-left: 1vh;
+}
+
+.titDesc{
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.description{
+  font:normal normal 30rpx "微软雅黑",arial,sans-serif;
+  margin-left: 25rpx;
+}
+.sectitle{
+  font:normal bolder 3vh "微软雅黑",arial,sans-serif;
+  margin-left: 25rpx;
+  margin-bottom: 1vh;
+}

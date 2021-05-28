@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-overlay": "@vant/weapp/overlay/index",
+    "calendar": "../../components/v2/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "mp-dialog": "weui-miniprogram/dialog/dialog"
+  },
+  "navigationStyle":"custom"
+}

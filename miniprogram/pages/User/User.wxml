@@ -1,0 +1,78 @@
+<!--pages/User/User.wxml-->
+
+
+
+<view class="head" wx:if="{{isInit}}">
+  <view class="userInf" bindtap="reLogin">
+    <image src="{{avatarUrl}}" class="NAJIImage"></image>
+    <view class="profile">
+      <view class="username">
+        {{nickname}}
+      </view>
+    </view>
+  </view>
+  <view class="userData">
+    <view class="continueLogin">
+      <view class="number">{{continueLogin}}</view>
+      <view class="descriptionWord">连续登录天数</view>
+    </view>
+    <view class="accumulativeRecord">
+      <view class="number">{{accumulativeRecord}}</view>
+      <view class="descriptionWord">累计记录天数</view>
+    </view>
+    <view class="receiveLike">
+      <view class="number">{{receiveLike}}</view>
+      <view class="descriptionWord">收到的喜欢</view>
+    </view>
+  </view>
+</view>
+<view wx:else class="head">
+  <view class="loginButton" bindtap="getUserProfile">登录</view>
+</view>
+<!-- <view class="like">
+  <image src="../../style/my/like.png" class="icon" style="margin-top:0.2vh"></image>
+  <view class="title" style="line-height: 5.4vh">喜欢</view>
+  <view class="like_num" style="line-height: 5.4vh">85</view>
+</view> -->
+<view class="myMessage" bindtap="toast">
+  <view  class="icon">
+    <image src="../../style/my/message.png" class="iconDetail"></image>
+  </view>
+  <view class="title">我的消息</view>
+  <view class="like_num"> > </view>
+</view>
+<view class="myLikeHappyThing" bindtap="toast">
+  <view  class="icon">
+    <image src="../../style/my/book.png" class="iconDetail"></image>
+  </view>
+  <view class="title">我喜欢的快乐事</view>
+  <view class="like_num"> > </view>
+</view>
+<view class="myHappyThing" bindtap="toast">
+  <view class="icon">
+    <image src="../../style/my/planet.png" class="iconDetail"></image>
+  </view>
+  <view class="title">我的快乐事</view>
+  <view class="like_num"> > </view>
+</view>
+<view class="customAndBackup" bindtap="toast">
+  <view class="icon">
+    <image src="../../style/my/setting.png" class="iconDetail"></image>
+  </view>
+  <view class="title">自定义及备份</view>
+  <view class="like_num" > > </view>
+</view>
+<view class="helpAndFeekback" bindtap="toast">
+  <view class="icon">
+    <image src="../../style/my/feedback.png" class="iconDetail"></image>
+  </view>
+  <view class="title">帮助和反馈</view>
+  <view class="like_num"> > </view>
+</view>
+<view class="about" bindtap="toast">
+  <view class="icon">
+    <image src="../../style/my/about.png" class="iconDetail"></image>
+  </view>
+  <view class="title">关于我们</view>
+  <view class="like_num"> > </view>
+</view>

@@ -1,0 +1,179 @@
+<!--pages/Evaluation/paper/paper.wxml-->
+<view wx:if="{{title=='fiveDimension'}}">
+  <view wx:if="{{!scaleFinish}}">
+    <view class="claim">
+    {{claim}}
+    </view>
+    <view class="questionBody">
+      <view wx:if="{{nowPageIndex<=5}}">
+        <view class="firstModuleAnswer" wx:for="{{group[nowPageIndex]}}" wx:for-index="index" wx:for-item="item">
+          <view data-value="A" data-index="{{item}}" class="firstPerRadio {{answer[item]=='A'?'bgc':''}}" bindtap="chooseFrontRadio">{{twentyOneAnswer[item].A}}</view>
+          <view data-value="B" data-index="{{item}}" class="firstPerRadio {{answer[item]=='B'?'bgc':''}}" bindtap="chooseFrontRadio">{{twentyOneAnswer[item].B}}</view>
+          <view data-value="C" data-index="{{item}}" class="firstPerRadio {{answer[item]=='C'?'bgc':''}}" bindtap="chooseFrontRadio">{{twentyOneAnswer[item].C}}</view>
+          <view data-value="D" data-index="{{item}}" class="firstPerRadio {{answer[item]=='D'?'bgc':''}}" bindtap="chooseFrontRadio">{{twentyOneAnswer[item].D}}</view>
+        </view>
+      </view>
+      <view wx:elif="{{nowPageIndex>=6 && nowPageIndex<=9}}">
+        <view class="secondModuleQuesion" wx:for="{{group[nowPageIndex]}}" wx:for-index="index" wx:for-item="item">
+          <view class="questionTitle">{{question[item]}}</view>
+          <radio-group bindchange="chooseFrontRadio" class="radioGroup" data-index="{{item}}" >
+            <label class="radio">
+              <radio value="A" color="#448088" checked="{{answer[item]=='A'?true:false}}"/>A
+            </label>
+            <label class="radio">
+              <radio value="B" color="#448088" checked="{{answer[item]=='B'?true:false}}"/>B
+            </label>
+            <label class="radio">
+              <radio value="C" color="#448088" checked="{{answer[item]=='C'?true:false}}"/>C
+            </label>
+            <label class="radio">
+              <radio value="D" color="#448088" checked="{{answer[item]=='D'?true:false}}"/>D
+            </label>
+          </radio-group>
+        </view>
+      </view>
+      <view wx:elif="{{nowPageIndex>=10 && nowPageIndex<=27}}">
+        <view class="secondModuleQuesion" wx:for="{{group[nowPageIndex]}}" wx:for-index="index" wx:for-item="item">
+          <view class="questionTitle">{{question[item]}}</view>
+          <radio-group bindchange="chooseFrontRadio" class="radioGroup" data-index="{{item}}" >
+            <label class="radio">
+              <radio value="A" color="#448088" checked="{{answer[item]=='A'?true:false}}"/>A
+            </label>
+            <label class="radio">
+              <radio value="B" color="#448088" checked="{{answer[item]=='B'?true:false}}"/>B
+            </label>
+          </radio-group>
+        </view>
+      </view>
+      <view wx:elif="{{nowPageIndex>=28 && nowPageIndex<=29}}">
+        <view class="secondModuleQuesion" wx:for="{{group[nowPageIndex]}}" wx:for-index="index" wx:for-item="item">
+          <view class="questionTitle">{{question[item]}}</view>
+          <radio-group bindchange="chooseFrontRadio" class="radioGroup" data-index="{{item}}" >
+            <label class="radio">
+              <radio value="A" color="#448088" checked="{{answer[item]=='A'?true:false}}"/>A
+            </label>
+            <label class="radio">
+              <radio value="B" color="#448088" checked="{{answer[item]=='B'?true:false}}"/>B
+            </label>
+            <label class="radio">
+              <radio value="C" color="#448088" checked="{{answer[item]=='C'?true:false}}"/>C
+            </label>
+            <label class="radio">
+              <radio value="D" color="#448088" checked="{{answer[item]=='D'?true:false}}"/>D
+            </label>
+          </radio-group>
+        </view>
+      </view>
+      <!-- <view wx:elif="{{nowPageIndex>=30 && nowPageIndex<=35}}"> -->
+      <view wx:else>
+        <view class="secondModuleQuesion" wx:for="{{group[nowPageIndex]}}" wx:for-index="index" wx:for-item="item">
+          <view class="questionTitle">{{question[item]}}</view>
+          <radio-group bindchange="chooseFrontRadio" class="radioGroup" data-index="{{item}}" >
+            <label class="radio">
+              <radio value="A" color="#448088" checked="{{answer[item]=='A'?true:false}}"/>A
+            </label>
+            <label class="radio">
+              <radio value="B" color="#448088" checked="{{answer[item]=='B'?true:false}}"/>B
+            </label>
+            <label class="radio">
+              <radio value="C" color="#448088" checked="{{answer[item]=='C'?true:false}}"/>C
+            </label>
+            <label class="radio">
+              <radio value="D" color="#448088" checked="{{answer[item]=='D'?true:false}}"/>D
+            </label>
+            <label class="radio">
+              <radio value="E" color="#448088" checked="{{answer[item]=='E'?true:false}}"/>E
+            </label>
+          </radio-group>
+        </view>
+      </view>
+      
+    </view>
+    <view class="buttonBody">
+      <view class="prevButton" bindtap="prev">上一页</view>
+      <view class="space"></view>
+      <view class="nextButton" bindtap="next">下一页</view>
+      <view class="space"></view>
+      <view class="finishButton {{scaleFinishStop==true?'finishBgc':''}}" bindtap="finish">完成</view>
+    </view>
+  </view>
+
+  <!-- 简介页面 -->
+  <view wx:else>
+    <view class="claim">
+      为保证测评结果准确性，请真实作答~
+    </view>
+
+    <view class="ageComponent">
+      <mp-form id="form" models="{{formData}}">
+          <mp-cells title="年龄">
+              <mp-cell prop="qq" title="" ext-class="">
+                  <input bindinput="ageEvent" data-field="年龄" class="weui-input" placeholder="请输入您的年龄" type="number"/>
+              </mp-cell>
+          </mp-cells>
+          <mp-cells title="性别">
+              <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="genderEvent">
+                  <mp-checkbox wx:for="{{genderItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+              </mp-checkbox-group>
+          </mp-cells>
+          <view class="weui-cells__title">学历</view>
+          <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell weui-cell_select">
+                  <view class="weui-cell__bd">
+                      <picker bindchange="educationEvent" value="{{educationIndex}}" range="{{educations}}">
+                          <view class="weui-select weui-select_in-select-after">{{educations[educationIndex]}}</view>
+                      </picker>
+                  </view>
+              </view>
+          </view>
+          <mp-cells title="是否为独生子女">
+              <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="childOnlyEvent">
+                  <mp-checkbox wx:for="{{childOnlyItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+              </mp-checkbox-group>
+          </mp-cells>
+      </mp-form>
+      <view class="profileButton">
+        <van-button bindtap="profileFinish" type="primary" size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)">完成</van-button>
+      </view>
+      <!-- <rich-text nodes="{{testData}}"></rich-text> -->
+
+    </view>
+  </view>
+</view>
+<view wx:else>
+  <view class="claim">
+    {{claim}}
+  </view>
+  <view class="questionBody">
+    <view class="secondModuleQuesion" wx:for="{{group[nowPageIndex]}}" wx:for-index="index" wx:for-item="item">
+      <view class="questionTitle">{{question[item]}}</view>
+      <radio-group bindchange="chooseFrontRadio" class="radioGroup" data-index="{{item}}" >
+        <label class="radio">
+          <radio value="A" color="#448088" checked="{{answer[item]=='A'?true:false}}"/>A
+        </label>
+        <label class="radio">
+          <radio value="B" color="#448088" checked="{{answer[item]=='B'?true:false}}"/>B
+        </label>
+        <label class="radio">
+          <radio value="C" color="#448088" checked="{{answer[item]=='C'?true:false}}"/>C
+        </label>
+        <label class="radio">
+          <radio value="D" color="#448088" checked="{{answer[item]=='D'?true:false}}"/>D
+        </label>
+      </radio-group>
+    </view>
+  </view>
+  <view class="buttonBody">
+      <view class="prevButton" bindtap="prev">上一页</view>
+      <view class="space"></view>
+      <view class="nextButton" bindtap="next">下一页</view>
+      <view class="space"></view>
+      <view class="finishButton {{scaleFinishStop==true?'finishBgc':''}}" bindtap="finish">完成</view>
+    </view>
+</view>
+
+<mp-dialog title="{{finishDialogTitle}}" show="{{finishDialogShow}}" bindbuttontap="tapDialogButton" buttons="{{finishButtons}}">
+    <view>{{finishDialogContent}}</view>
+</mp-dialog>
+
+

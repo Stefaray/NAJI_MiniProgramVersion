@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-image": "@vant/weapp/image/index"
+  },
+  "component": true,
+  "navigationBarTitleText": "用户中心",
+  "navigationBarBackgroundColor": "#f5f9fa"
+}

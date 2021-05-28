@@ -1,0 +1,141 @@
+/* pages/Evaluation/paper/paper.wxss */
+.claim{
+  margin: 0 auto;
+  margin-top: 3vh;
+  width: 600rpx;
+  /* height: 10vh; */
+  border: 3rpx dashed #448088;
+  border-radius: 1rem;
+  padding: 7rpx 30rpx;
+  background-color: #F5F9FA;
+  font:normal normal 25rpx "微软雅黑",arial,sans-serif;
+  color: #448088;
+}
+.questionBody{
+  margin:0 auto;
+  margin-top:3vh;
+  width: 650rpx;
+  height: 71vh;
+}
+.firstModuleAnswer{
+  margin:1.5vh auto;
+  width: 100%;
+  border: 3rpx solid #448088;
+  padding: 5rpx
+}
+.secondModuleQuesion{
+  margin:1.5vh auto;
+  width: 100%;
+  border: 3rpx solid #448088;
+  padding: 5rpx;
+  /* display: flex; */
+}
+.questionTitle{
+  margin: 1vh auto;
+  margin-left: 15rpx;
+  font:normal normal 28rpx "微软雅黑",arial,sans-serif;
+  height: 4.5vh;
+}
+.radioGroup{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 90%;
+  margin: 0.5vh auto;
+  height: 4vh;
+  margin-top: 2vh;
+}
+.radio{
+  margin-right: 15rpx;
+  font:normal normal 28rpx "微软雅黑",arial,sans-serif;
+}
+
+
+/* 前21道选择题 */
+.firstPerRadio{
+  height: 4vh;
+  width: 100%;
+  font:normal normal 2vh "微软雅黑",arial,sans-serif;
+  color: #448088;
+  line-height: 4vh;
+  /* margin-top:0.5vh;
+  margin-left: 10rpx; */
+}
+.bgc{
+  background-color: #ddd;
+}
+.finishBgc{
+  background-color: #448088;
+}
+
+
+/* 三个按钮 */
+.buttonBody{
+  margin-top:3vh;
+  margin-left: 140rpx;
+  /* background-color: #ddd; */
+  width: 550rpx;
+  height: 6vh;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+}
+.prevButton{
+  font:normal normal 30rpx "微软雅黑",arial,sans-serif;
+  border: 4rpx solid #448088;
+  border-radius: 8%;
+  width: 150rpx;
+  height: 4vh;
+  vertical-align:middle;
+  text-align: center;
+  line-height: 4vh;
+  
+}
+.nextButton{
+  border: 4rpx solid #448088;
+  font:normal normal 30rpx "微软雅黑",arial,sans-serif;
+  border-radius: 8%;
+  width: 150rpx;
+  height: 4vh;
+  align-content: center;
+  text-align: center;
+  line-height: 4vh;
+}
+.finishButton{
+  font:normal normal 30rpx "微软雅黑",arial,sans-serif;
+  border: 4rpx solid #448088;
+  border-radius: 8%;
+  width: 150rpx;
+  height: 4vh;
+  align-content: center;
+  text-align: center;
+  line-height: 4vh;
+}
+.space{
+  width: 50rpx;
+  height: 6vh;
+}
+
+
+/* 个人简介页面wxss */
+.profileCard{
+  width: 650rpx;
+  background-color: #fff;
+  border-radius: 1rem;
+  margin: 3vh auto;
+  box-shadow:5rpx 5rpx 5rpx 5rpx #ddd;
+}
+.profileButton{
+  width: 750rpx;
+  height: 10vh;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.space2{
+  width: 50rpx;
+  height: 3vh;
+}
+.red{
+  color: red
+}

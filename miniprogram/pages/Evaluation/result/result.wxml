@@ -1,0 +1,13 @@
+<!--pages/Evaluation/result/result.wxml-->
+<image class="resultCard" src="cloud://stefaray-3gxwogx2a161685a.7374-stefaray-3gxwogx2a161685a-1305687531/resultCard.png"></image>
+
+<view class="resultContentView">
+  <view class="resultTitle">❤ 详细内容</view>
+  <rich-text class="richText" nodes="{{contentText}}"></rich-text>
+</view>
+
+<view>
+  <view class="headTitle">{{headTitle}}</view>
+  <view class="headDesc">您的测试结果是</view>
+  <rich-text class="headContent" nodes="{{headContent}}"></rich-text>
+</view>

@@ -1,0 +1,29 @@
+<!--pages/Community/Community.wxml-->
+
+<view class="happyThingView">
+  <view class="head">
+    <view class="avatar">
+      <image  class="avatarPhoto"  src="{{avatarURL}}"></image>
+    </view>
+    <view class="id">{{userNickname}}</view>
+  </view>
+  <view class="body">
+    <view class="bodySpace"></view>
+    <view class="bodyContent">
+      <scroll-view class="scrollView" scroll-y="true" scroll-x="true">
+        <view class="word">{{happyThingText}}</view>
+        <view>
+          <image mode="heightFix" class="photo" src="{{photoURL}}"></image>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="tail">
+    <view class="space"></view>
+    <view class="time">{{date}}</view>
+    <view class="like">
+      <image bindtap="likeEvnet" class="likeIcon" src="../../style/community/hollowLike.svg"></image>
+    </view>
+  </view>
+</view>
+<image bindtap="popCornEvent" class="popCorn" src="cloud://stefaray-3gxwogx2a161685a.7374-stefaray-3gxwogx2a161685a-1305687531/popcorn.png"></image>

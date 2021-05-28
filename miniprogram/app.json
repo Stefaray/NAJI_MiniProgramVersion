@@ -1,0 +1,60 @@
+{
+  "pages": [
+    "pages/Record/Record",
+    "pages/Record/editor/editor",
+    "pages/Statistic/Statistic",
+    "pages/Evaluation/Evaluation",
+    "pages/Evaluation/result/result",
+    "pages/Evaluation/paper/paper",
+    "pages/Evaluation/introduce/introduce",
+    "pages/Community/Community",
+    "pages/User/User"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#f5f9fa",
+    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "tabBar": {
+    "color": "#898989",
+    "selectedColor": "#448088",
+    "borderStyle": "black",
+    "backgroundColor": "#F4F8F9",
+    "list": [
+      {
+        "pagePath": "pages/Record/Record",
+        "iconPath": "style/tarBarIcon/record.png",
+        "selectedIconPath": "style/tarBarIcon/record_o.png",
+        "text": "记录"
+      },
+      {
+        "pagePath": "pages/Statistic/Statistic",
+        "iconPath": "style/tarBarIcon/statistic.png",
+        "selectedIconPath": "style/tarBarIcon/statistic_o.png",
+        "text": "统计"
+      },
+      {
+        "pagePath": "pages/Evaluation/Evaluation",
+        "iconPath": "style/tarBarIcon/evaluation.png",
+        "selectedIconPath": "style/tarBarIcon/evaluation_o.png",
+        "text": "测评"
+      },
+      {
+        "pagePath": "pages/Community/Community",
+        "iconPath": "style/tarBarIcon/community.png",
+        "selectedIconPath": "style/tarBarIcon/community_o.png",
+        "text": "社区"
+      },
+      {
+        "pagePath": "pages/User/User",
+        "iconPath": "style/tarBarIcon/my.png",
+        "selectedIconPath": "style/tarBarIcon/my_o.png",
+        "text": "用户中心"
+      }
+    ]
+  }
+}

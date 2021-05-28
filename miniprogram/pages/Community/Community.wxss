@@ -1,0 +1,101 @@
+/* pages/Community/Community.wxss */
+.popCorn{
+  width: 550rpx;
+  height: 550rpx;
+  position: absolute;
+  bottom: 0;
+  left: 100rpx;
+}
+.happyThingView{
+  width: 600rpx;
+  height: 450rpx;
+  border: 6rpx solid #448088;
+  background-color: rgb(245,249,250);
+  border-radius: 1rem;
+  margin: 5vh auto;
+  display: flex;
+  flex-direction: column;
+}
+.head{
+  flex:1;
+  display: flex;
+  flex-direction: row;
+  /*border: 3rpx solid black;*/
+}
+.avatar{
+  flex:1;
+  /*border: 3rpx solid black;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.avatarPhoto{
+  height: 60rpx;
+  width: 60rpx;
+  border-radius: 50%;
+  border: 3rpx solid black;
+  line-height: 100rpx;
+}
+.id{
+  flex:6;
+  font:normal bolder 30rpx "宋体",arial,sans-serif;
+  color: #448088;
+  align-items: center;
+  display: flex;
+}
+
+.body{
+  flex:4;
+  display: flex;
+  flex-direction: row;
+}
+.bodySpace{
+  flex: 1;
+  /*border: 3rpx solid black;*/
+}
+.bodyContent{
+  flex: 5;
+}
+
+.tail{
+  flex:1;
+  display: flex;
+  flex-direction: row;
+  /*border: 3rpx solid black;*/
+}
+.space{
+  flex:1;
+}
+.time{
+  flex: 4;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  font: normal normal 26rpx "宋体";
+  /*border: 3rpx solid black;*/
+  color: #448088;
+}
+.like{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.likeIcon{
+  height: 45rpx;
+  width:  50rpx;
+}
+.scrollView{
+  
+  height: 300rpx;
+  width: 500rpx;
+}
+.word{
+  margin-top:2vh;
+}
+.photo{
+  margin-top: 2vh;
+  /* width: 200rpx; */
+  height: 200rpx;
+}
+

@@ -1,0 +1,443 @@
+/* pages/Record/Record.wxss */
+.root{
+  width: 750rpx;
+  height: 88vh;
+}
+.main{
+  width: 650rpx;
+  height: 80vh;
+  /* background-color: #ddd; */
+  margin: 3vh auto;
+  border: 6rpx solid #448088;
+  border-radius: 20rpx;
+  overflow:scroll;
+  overflow-x: hidden;
+}
+.statusModule .statusMain{
+  width: 90%;
+  height: 15vh;
+  border: 6rpx solid #dddddd;
+  border-radius: 20rpx;
+  /* border-radius: 20rpx;background-color: #000; */
+  margin: 0 auto;
+}
+.happyThingModule{
+  margin: 3vh auto;
+  margin-left: 10rpx;
+}
+.lebalMain{
+  /* float: left; */
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10rpx;
+}
+.lebalButton{
+  width: 100rpx;
+  height: 100rpx;
+  /* background-color: #000; */
+  border: 7rpx solid #aed1d6;
+  border-radius: 100%;
+}
+.noteMain{
+  width: 600rpx;
+  height: 20vh;
+  /* background-color: #000; */
+  border: 3rpx solid #448088;
+  /* border-radius: 1rem; */
+  background-color: rgb(245,249,250);
+  margin: 0 auto;
+}
+.date{
+  margin: 0.5vh auto;
+  height: 5.5vh;
+}
+.navigatorBra{
+  height: 12vh;
+  background-color: #f5f9fa;
+}
+.dayConcludeButton{
+    width: 250rpx;
+    height: 8vh;
+    background-color: #edf5f6;
+    float: left;
+    border-top-right-radius: 40%;
+    border-top-left-radius:  40%;
+}
+.dayConcludeButtonAnother{
+    width: 250rpx;
+    height: 8vh;
+    background-color: #fff;
+    float: left;
+    border-top-right-radius: 40%;
+    border-top-left-radius:  40%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selfGroomingButton{
+    width: 250rpx;
+    height: 8vh;
+    background-color: #edf5f6;
+    float: left;
+
+    border-top-right-radius: 40%;
+    border-top-left-radius:  40%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navigatorSpace{
+  height: 4vh;
+  width: 750rpx;
+}
+.navigatorTitle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font:normal bold 36rpx "微软雅黑",arial,sans-serif;
+  /* line-height: 8vh; */
+  /* border: 3rpx solid #000; */
+	color: #448088;
+}
+.statusText,.happyThingTitle,.noteTitle{
+  font:normal bold 36rpx "微软雅黑",arial,sans-serif;
+  color: #448088;
+  margin: 1vh auto;
+  margin-left: 12rpx;
+}
+.happyThingHead{
+  display: flex;
+  flex: row;
+}
+.happyThingButton{
+  border:4rpx solid #448088;
+  /* height: 2vh; */
+  width: 120rpx;
+  margin: 2vh auto;
+  margin-left: 0rpx;
+  font:normal normal 25rpx "微软雅黑",arial,sans-serif;
+  color: #448088;
+  border-radius: 20%;
+  text-align: center;
+  /* float: left; */
+}
+.noteTextArea{
+  height: 100%;
+  margin-bottom: 2vh;
+  overflow:scroll;
+}
+.happyThingTextArea{
+  margin-left: 10rpx;
+  margin-right: 3rpx;
+  width: 400rpx;
+  height: 100rpx;
+  border: 4rpx solid #dddddd;
+  border-radius: 5%;
+  font:normal normal 30rpx "微软雅黑",arial,sans-serif;
+  color: #395b5f;
+}
+.quickShare{
+  width: 60rpx;
+  height: 80rpx;
+  padding: 10rpx;
+  border: 5rpx solid #bfdbdb;
+  border-top-right-radius: 20%;
+  border-bottom-right-radius: 20%;
+  font:normal normal 30rpx "微软雅黑",arial,sans-serif;
+  color: #448088;
+}
+.quickShareIcon{
+  margin-left: 10rpx;
+  width: 80rpx;
+  height: 9vh;
+}
+
+
+
+/* 单选题 begin*/
+.question{
+  height: 6vh;
+  line-height: 6vh;
+  text-align: center;
+  font:normal bold 34rpx "微软雅黑",arial,sans-serif;
+	color: #395b5f;
+}
+.radioGroup{
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  /* border: 8rpx solid #448088; */
+  display: flex;
+  flex-direction: row;
+}
+.radio{
+  color: #448088;
+}
+.radioWord{
+  float: left;
+}
+.radioLabel{
+  display: flex;
+  flex-direction: column;
+}
+.per_radio{
+  flex: 1;
+}
+.standard{
+  margin: 0 auto;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+}
+.comment{
+  font:normal normal 30rpx "微软雅黑",arial,sans-serif;
+	color: #448088;
+}
+  /* 单选题结果 begin */
+  .res{
+    display: flex;
+    flex-direction: row;
+  }
+  .resExpression{
+    flex:2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 3rpx solid #000; */
+  }
+  .resWord{
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2vh;
+  }
+  .resTitle{
+    flex: 1;
+    align-items: center;
+    display: flex;
+    font:normal bolder 34rpx "微软雅黑",arial,sans-serif;
+	  color: #448088;
+  }
+  .resDesc{
+    margin-top: 2vh;
+    flex: 2;
+    font:normal normal 32rpx "微软雅黑",arial,sans-serif;
+	  color: #448088;
+  }
+  .resIcon{
+    width: 8vh;
+    height: 8vh;
+    
+  }
+  /* 单选题结果 end */
+/* 单选题 end*/
+
+/* 日期 begin */
+.date{
+  margin-top: 2vh;
+}
+.year{
+  margin-left: 20rpx;
+  float: left;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  background-color: #000;
+  background: linear-gradient(to right,#fef1ea,#f9fbe1);
+  line-height: 70rpx;
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+	color: #448088;
+}
+.month{
+  margin-left: 10rpx;
+  float: left;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  background-color: #000;
+  background: linear-gradient(to right,#d2eee2,#e9f3cd);
+  line-height: 70rpx;
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+  color: #448088;
+}
+.day{
+  margin-left: 10rpx;
+  float: left;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  background-color: #000;
+  background: linear-gradient(to right,#ddfbf6,#b5e7e1);
+  line-height: 70rpx;
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+	color: #448088;
+}
+/* 日期 end */
+/* 日历 begin */
+.test{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.test2{
+  width:300rpx;
+  height: 300rpx;
+  background-color: #fff;
+}
+.bgWhite{
+  width:700rpx;
+  height: 700rpx;
+  background-color: #fff;
+}
+/* 日历 end */
+
+/* 随手小记弹出层 begin */
+/* 头部 */
+.notePopUpHead{
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  margin: 0 auto;
+  height: 10%;
+  border: 3rpx solid #000;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.notePopUpPublishButton{
+  height: 80%;
+  background-color: #07C160;
+  font:normal normal 28rpx "微软雅黑",arial,sans-serif;
+  color: white;
+  padding:20rpx 0;
+  
+}
+.notePopUpCancel{
+  align-items: center;
+  display: flex;
+}
+.notePopUpTitle{
+  font:normal bold 30rpx "微软雅黑"
+}
+/* 文字编辑 */
+.notePopUpText{
+  width: 95%;
+  margin: 0 auto;
+  height: 40%;
+  border: 3rpx solid #000;
+  margin-bottom: 1vh;
+}
+/* 图片编辑 */
+.notePopUpUploadPhoto{
+  width: 95%;
+  margin: 0 auto;
+  border: 3rpx solid #000;
+}
+/* 随手小记弹出层 end */
+
+
+/* 随手小记文本编辑器 begin */
+@font-face {font-family: "iconfont";
+  src: url('//at.alicdn.com/t/font_8d5l8fzk5b87iudi.eot?t=1501489744354'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_8d5l8fzk5b87iudi.eot?t=1501489744354#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_8d5l8fzk5b87iudi.woff?t=1501489744354') format('woff'), /* chrome, firefox */
+  url('//at.alicdn.com/t/font_8d5l8fzk5b87iudi.ttf?t=1501489744354') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_8d5l8fzk5b87iudi.svg?t=1501489744354#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@import "./weui.wxss";
+@import "./iconfont.wxss";
+
+.ql-container {
+  box-sizing: border-box;
+  /* margin-top:21vh; */
+  width: 720rpx;
+  /* height: 100%; */
+  font-size: 16px;
+  line-height: 1.5;
+  overflow: auto;
+  padding: 10px 10px 20px 10px;
+  border: 1px solid #ECECEC;
+  background-color: #f5f9fa;
+}
+.ql-active {
+  color: #22C704;
+}
+.iconfont {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 20px;
+}
+.toolbar {
+  box-sizing: border-box;
+  padding: 0 10px;
+  height: 9vh;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 100%;
+  /* top: 12vh; */
+  bottom:0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ECECEC;
+  border-left: none;
+  border-right: none;
+  background-color: #f5f9fa;
+  /* z-index:1; */
+}
+.finish{
+  font:normal bolder 4vh "微软雅黑",arial,sans-serif;
+  color: #448088;
+  border: 3rpx solid #448088;
+  margin-top:2vh;
+}
+/* 自定义导航栏 */
+.head{
+  position: fixed;
+  height: 12vh;
+  width: 750rpx;
+  background-color: #f5f9fa;
+  display: flex;
+  flex-direction: row;
+  z-index:1;
+}
+.back{
+  flex: 1;
+  text-align:center;
+  margin-top: 6vh;
+}
+.edit_title{
+  margin-top: 6vh;
+  margin-left: 140rpx;
+  flex: 3;
+  font:normal bolder 3vh "微软雅黑",arial,sans-serif;
+  color: #448088;
+}
+.svg_back{
+  width: 4vh;
+  height: 4vh;
+}
+/* 随手小记文本编辑器 end */

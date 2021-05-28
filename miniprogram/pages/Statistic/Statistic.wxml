@@ -1,0 +1,27 @@
+<view class = "content">
+  <view class = "selectDate">
+    <text class="prevMonth" bindtap="prevMonth"> ＜ </text>
+    <text class = "nowDate">{{year}}/{{month}}</text>
+    <text class="nextMonth" bindtap="nextMonth"> ＞ </text>
+  </view>
+  
+  <view class = "stateChange">
+    <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ecLine }}"></ec-canvas>
+  </view>
+
+  <view class = "stateCalendar">
+    <ec-canvas id="mychart-dom-graph" canvas-id="mychart-pie" ec="{{ ecGraph }}"></ec-canvas>
+  </view>
+
+  <!-- <view class = "stateRecord">
+    <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ecPie }}"></ec-canvas> 
+  </view>
+
+
+  <view class = "happyThing">
+    <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ecBar }}"></ec-canvas>  
+  </view> -->
+  
+
+</view>
+

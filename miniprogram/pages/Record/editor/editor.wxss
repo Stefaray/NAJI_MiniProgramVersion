@@ -1,0 +1,106 @@
+@font-face {font-family: "iconfont";
+  src: url('//at.alicdn.com/t/font_8d5l8fzk5b87iudi.eot?t=1501489744354'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_8d5l8fzk5b87iudi.eot?t=1501489744354#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_8d5l8fzk5b87iudi.woff?t=1501489744354') format('woff'), /* chrome, firefox */
+  url('//at.alicdn.com/t/font_8d5l8fzk5b87iudi.ttf?t=1501489744354') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_8d5l8fzk5b87iudi.svg?t=1501489744354#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@import "./weui.wxss";
+@import "./iconfont.wxss";
+
+.container {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%;
+}
+
+.ql-container {
+  box-sizing: border-box;
+  margin-top:21vh;
+  width: 720rpx;
+  height: 100%;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow: auto;
+  padding: 10px 10px 20px 10px;
+  border: 1px solid #ECECEC;
+  background-color: #f5f9fa;
+}
+
+.ql-active {
+  color: #22C704;
+}
+
+.iconfont {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.toolbar {
+  box-sizing: border-box;
+  padding: 0 10px;
+  height: 9vh;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 100%;
+  top: 12vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ECECEC;
+  border-left: none;
+  border-right: none;
+  background-color: #f5f9fa;
+  z-index:1;
+}
+
+.finish{
+  font:normal bolder 4vh "微软雅黑",arial,sans-serif;
+  color: #448088;
+  border: 3rpx solid #448088;
+  margin-top:2vh;
+}
+
+
+
+/* 自定义导航栏 */
+.head{
+  position: fixed;
+  height: 12vh;
+  width: 750rpx;
+  background-color: #f5f9fa;
+  display: flex;
+  flex-direction: row;
+  z-index:1;
+}
+.back{
+  flex: 1;
+  text-align:center;
+  margin-top: 6vh;
+}
+.edit_title{
+  margin-top: 6vh;
+  margin-left: 140rpx;
+  flex: 3;
+  font:normal bolder 3vh "微软雅黑",arial,sans-serif;
+  color: #448088;
+}
+.svg_back{
+  width: 4vh;
+  height: 4vh;
+}
+

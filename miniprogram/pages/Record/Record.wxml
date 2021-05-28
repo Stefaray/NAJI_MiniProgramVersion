@@ -1,0 +1,190 @@
+<!--pages/Record/Record.wxml-->
+<!-- <text>pages/Record/Record.wxml</text> -->
+<page-meta>
+  <view class="navigatorBra">
+    <view class="navigatorSpace"></view>
+    <view class="dayConcludeButtonAnother" >
+      <view class="navigatorTitle">每日小结</view>
+    </view>
+    <view class="selfGroomingButton">
+      <view bindtap="selfGroomingEvent" class="navigatorTitle">自主疏导</view>
+    </view>
+    
+  </view>
+</page-meta>
+<swiper class="root" current="{{curPage}}">
+  <swiper-item wx:for="{{dataArr}}" wx:for-index="totalIndex" wx:for-item="totalItem">
+    <view class="main">
+      <view class="date" bindtap="controlCalanderShow">
+        <view class="year"  data-totalindex="{{totalIndex}}" >{{dataArr[totalIndex].date[2]+dataArr[totalIndex].date[3]}}</view>
+        <view class="month" data-totalindex="{{totalIndex}}" >{{dataArr[totalIndex].date[5]+dataArr[totalIndex].date[6]}}</view>
+        <view class="day"   data-totalindex="{{totalIndex}}" >{{dataArr[totalIndex].date[8]+dataArr[totalIndex].date[9]}}</view>
+        <!-- 2021/04/16 -->
+      </view>
+      <view class="statusModule">
+        <view class="statusText">点击记录今天的状态</view>
+        <view wx:if="{{dataArr[totalIndex].isFinish}}" class="statusMain res" >
+          <view class="resExpression">
+            <image src="{{dataArr[totalIndex].resExpressionSrc}}" class="resIcon"></image>
+          </view>
+          <view class="resWord">
+            <view class="resTitle">{{dataArr[totalIndex].resTitle}}</view>
+            <view class="resDesc">{{dataArr[totalIndex].resDesc}}</view>
+          </view>
+        </view>
+        <swiper indicator-dots="{{indicatorDots}}" current="{{newRadioIndex}}" class="statusMain" wx:else> 
+              <swiper-item wx:for="{{sortArr}}" wx:for-item="itemName" wx:for-index="radioIndex">
+                <view class="question">{{question[itemName]}}</view>
+                <radio-group class="radioGroup" bindchange="radioCheck" data-totalindex="{{totalIndex}}" data-radioindex="{{radioIndex}}">
+                    <radio color="#448088" class="per_radio" value="1"></radio>
+                    <radio color="#448088" class="per_radio" value="2"></radio>
+                    <radio color="#448088" class="per_radio" value="3"></radio>
+                    <radio color="#448088" class="per_radio" value="4"></radio>
+                    <radio color="#448088" class="per_radio" value="5"></radio>
+                    <radio color="#448088" class="per_radio" value="6"></radio>
+                    <radio color="#448088" class="per_radio" value="7"></radio>
+                </radio-group>
+                <view class="standard">
+                  <text class="comment">很不符合</text>
+                  <text class="comment">一般</text>
+                  <text class="comment">非常符合</text>
+                </view>
+
+              </swiper-item>
+        </swiper>
+
+      </view>
+      <view class="happyThingModule">
+        <view class="happyThingHead">
+          <text class="happyThingTitle">定格今天的快乐事</text>
+          <view class="happyThingButton" data-totalindex="{{totalIndex}}" bindtap="happyThingAgain">再来一件</view>
+        </view>
+        
+        <view wx:for-index="happyThingIndex" wx:for="{{dataArr[totalIndex].happyThing.length==0?1:dataArr[totalIndex].happyThing.length}}">
+          <view class="lebalMain">
+            
+            <van-uploader bind:after-read="afterRead" data-happythingindex="{{happyThingIndex}}" data-totalindex="{{totalIndex}}" >
+              <image src="{{dataArr[totalIndex].happyThing[happyThingIndex].photoURL}}" class="lebalButton"></image>
+            </van-uploader>
+            <!-- <form bindsubmit="bindHappyThingFormSubmit"> -->
+            <textarea class="happyThingTextArea" data-happythingindex="{{happyThingIndex}}" data-totalindex="{{totalIndex}}"  placeholder="" name="textarea" bindblur="textChange" value="{{dataArr[totalIndex].happyThing[happyThingIndex].happyThingText}}"/>
+              <!-- <button form-type="submit"> 提交 </button> -->
+            <!-- </form> -->
+            <view wx:if="{{dataArr[totalIndex].happyThing[happyThingIndex].isSharing}}" data-happythingindex="{{happyThingIndex}}" data-totalindex="{{totalIndex}}" bindtap="quickShare">
+              <image mode="widthFix" class="quickShareIcon" src="../../style/record/isSharing.svg"></image>
+            </view>
+            <view wx:else class="quickShare" data-happythingindex="{{happyThingIndex}}" data-totalindex="{{totalIndex}}" bindtap="quickShare">一键分享</view>
+
+          </view>
+        </view>      
+      </view>
+      
+
+      <view class="noteModule">
+        <view class="noteTitle"  data-totalindex="{{totalIndex}}"  bindtap="showPopup">随手小记</view>
+        <view class="noteMain">
+          <!-- <form bindsubmit="bindFormSubmit"> -->
+            <!-- <textarea class="noteTextArea" placeholder="form 中的 textarea" auto-focus name="textarea"/> -->
+            <view class="noteTextArea"  data-totalindex="{{totalIndex}}" bindtap="editNote">
+              <rich-text nodes="{{dataArr[totalIndex].note}}"></rich-text>
+            </view>
+            <!-- <button form-type="submit"> 提交 </button> -->
+          <!-- </form> -->
+        </view>
+
+      </view>
+      <view class="finishModule">
+        
+      </view>
+
+    </view>
+  </swiper-item>
+</swiper>
+
+
+<!-- 日历组件 -->
+<van-overlay show="{{ calanderShow }}" bind:click="controlCalanderHide">
+  <view class="test">
+    <view class="bgWhite">
+      <view style="width: 90%;height:640rpx;overflow:hidden;margin: 0 auto 40rpx;">
+        <calendar
+          id="calendar"
+          config="{{calendarConfig}}"
+          bind:onSwipe="onSwipe"
+          bind:whenChangeWeek="whenChangeWeek"
+          bind:whenChangeMonth="whenChangeMonth"
+          bind:takeoverTap="takeoverTap"
+          bind:afterTapDate="afterTapDate"
+          
+        ></calendar>
+        <!-- bind:afterCalendarRender="afterCalendarRender" -->
+      </view>
+    </view>
+  </view>
+</van-overlay>
+
+<!-- 随手小记弹窗 -->
+<van-popup
+  show="{{ notePopUPShow }}"
+  round
+  position="bottom"
+  custom-style="height: 75%"
+  bind:close="onClose"
+  class="notePopup"
+>
+  <view class="notePopUpHead">
+    <view class="notePopUpCancel">
+      <!-- <text class="notePopUpWrongIcon">×</text> -->
+      <text class="notePopUpTitle">写回答</text>
+    </view>
+    <view class="notePopUpPublish">
+      <button style="width: 150rpx" class="notePopUpPublishButton">保存</button>
+    </view>
+  </view>
+  <scroll-view scroll-y="true" class="notePopUpText">
+      <!-- <editor 
+        id="editor" 
+        class="ql-container" 
+        placeholder="{{placeholder}}"
+        value="{{articleContent}}"
+        bindinput="getEditorValue"
+        bindstatuschange="onStatusChange" 
+        bindready=""
+        bindfocus="onFocus"
+        bindblur="onNoFocus"
+        >
+      </editor> -->
+      <editor id="editor" class="ql-container" placeholder="{{placeholder}}" showImgSize showImgToolbar showImgResize bindstatuschange="onStatusChange" bindready="onEditorReady" bindinput="onContentChange" bindfocus="onFocus" bindblur="onNoFocus">
+      </editor>
+  </scroll-view>
+  <!-- 工具栏可增删减，keyboard表示根据键盘位置弹出，可以去掉，在CSS中position自定义工具栏的位置-->
+  <view class="toolbar" catchtouchend="format" hidden="{{keyboard==true ? false : true}}">
+    <i class="iconfont icon-format-header-2 {{formats.header === 2 ? 'ql-active' : ''}}" data-name="header" data-value="{{2}}"></i>
+    <i class="iconfont icon-format-header-3 {{formats.header === 3 ? 'ql-active' : ''}}" data-name="header" data-value="{{3}}"></i>
+    <i class="iconfont icon-zitijiacu {{formats.bold ? 'ql-active' : ''}}" data-name="bold"></i>
+    <i class="iconfont icon-zitixieti {{formats.italic ? 'ql-active' : ''}}" data-name="italic"></i>
+    <i class="iconfont icon-zitixiahuaxian {{formats.underline ? 'ql-active' : ''}}" data-name="underline"></i>
+    <i class="iconfont icon--checklist" data-name="list" data-value="check"></i>
+    <i class="iconfont icon-youxupailie {{formats.list === 'ordered' ? 'ql-active' : ''}}" data-name="list" data-value="ordered"></i>
+    <i class="iconfont icon-wuxupailie {{formats.list === 'bullet' ? 'ql-active' : ''}}" data-name="list" data-value="bullet"></i>
+  </view>
+  <view class="notePopUpUploadPhoto">
+    <van-uploader
+      file-list="{{ noteTmpPhotoList }}"
+      max-count="9"
+      bind:after-read="afterReadPhotoList"
+      multiple="true"
+    />
+  </view>
+  
+</van-popup>
+
+<!-- 随手小记未保存提示 -->
+<mp-dialog title="记录未保存" show="{{noteDialogShow}}" bindbuttontap="tapNoteDialogButton" buttons="{{noteDialogButtons}}">
+    <view>随手小记内容发生改变，是否保存~</view>
+</mp-dialog>
+
+
+
+
+

@@ -1,0 +1,50 @@
+/* pages/Evaluation/result/result.wxss */
+.resultCard{
+  width: 700rpx;
+  height: 700rpx;
+  margin: 0vh auto;
+}
+.resultContentView{
+  width: 660rpx;
+  /* height: 70vh; */
+  background-color: #fff;
+  border-radius: 1rem;
+  margin: 0 auto; 
+  box-shadow:5rpx 5rpx 5rpx 5rpx #ddd;
+  margin-bottom: 10vh;
+  padding: 0 10rpx 0 10rpx;
+}
+.resultTitle{
+  padding:25rpx 0;
+  display: flex;
+  justify-content: center;
+  font:normal bold 36rpx "微软雅黑",arial,sans-serif;
+  color: #448088;
+  /* align-items: center; */
+  
+}
+.richText{
+  font:normal 300 28rpx "微软雅黑",arial,sans-serif;
+}
+
+
+/* head */
+.headTitle{
+  position: absolute;
+  top: 45rpx;
+  left: 160rpx;
+  font:normal bold 36rpx "微软雅黑",arial,sans-serif;
+}
+.headDesc{
+  position: absolute;
+  top: 145rpx;
+  left: 280rpx;
+  font:normal bold 26rpx "微软雅黑",arial,sans-serif;
+}
+.headContent{
+  position: absolute;
+  top: 250rpx;
+  left: 280rpx;
+  font:normal normal 28rpx "宋体",arial,sans-serif;
+  color: #448088;
+}
