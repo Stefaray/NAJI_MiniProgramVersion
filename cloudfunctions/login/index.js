@@ -30,7 +30,7 @@ exports.main = async (event, context) => {
         _id: wxContext.OPENID,
         date: nowDay,
         nickname: 'NAJI用户',
-        avatarUrl: 'NAJI.jpg',
+        avatarUrl: 'cloud://stefaray-3gxwogx2a161685a.7374-stefaray-3gxwogx2a161685a-1305687531/NAJI.jpg',
         continueLoginDay: 1,
         lastLoginDay: nowDay,
         accumulativeRecord: 0,

@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/Record/Record",
-    "pages/Record/editor/editor",
+    "pages/Community/Community",
     "pages/Statistic/Statistic",
     "pages/Evaluation/Evaluation",
     "pages/Evaluation/result/result",
     "pages/Evaluation/paper/paper",
     "pages/Evaluation/introduce/introduce",
-    "pages/Community/Community",
+    
     "pages/User/User"
   ],
   "window": {

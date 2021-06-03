@@ -44,7 +44,7 @@ Page({
                   avatarUrl:          res.data[0].avatarUrl,
                   continueLogin:      res.data[0].continueLoginDay,
                   accumulativeRecord: res.data[0].accumulativeRecord,
-                  receiveLike:        res.data[0].like,
+                  receiveLike:        res.data[0].receiveLike,
                 })
               }
             })
@@ -86,7 +86,7 @@ Page({
               avatarUrl:          res.userInfo.avatarUrl,
               continueLogin:      res2.result[0].continueLoginDay,
               accumulativeRecord: res2.result[0].accumulativeRecord,
-              receiveLike:        res2.result[0].like,
+              receiveLike:        res2.result[0].receiveLike,
             })
           },
           fail:function(){
@@ -111,7 +111,7 @@ Page({
                   avatarUrl:          'NAJI.jpg',
                   continueLogin:      res2.data[0].continueLoginDay,
                   accumulativeRecord: res2.data[0].accumulativeRecord,
-                  receiveLike:        res2.data[0].like,
+                  receiveLike:        res2.data[0].receiveLike,
                 })
               }
             })

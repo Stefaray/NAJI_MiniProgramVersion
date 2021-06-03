@@ -12,12 +12,12 @@
 .edit_title{
 
   margin-top: 3vh;
-  font:normal bolder 3vh "微软雅黑",arial,sans-serif;
-  color: #448088;
+  /* font:normal bolder 3vh "微软雅黑",arial,sans-serif;
+  color: #448088; */
 }
 .fiveDimension{
   width: 609rpx;
-  height: 41vh;
+  height: 47vh;
   border: 7rpx solid #aacfd0;
   margin: 0 auto;
   margin-top:2vh;
@@ -31,7 +31,7 @@
 }
 .selfEsteem, .nervous, .weekStatus{
   width: 609rpx;
-  height: 11vh;
+  height: 12.5vh;
   border: 7rpx solid #aacfd0;
   margin: 1.3vh auto;
   border-radius: 1rem;
@@ -41,10 +41,11 @@
 }
 .fiveCover{
   width: 400rpx;
-  height: 27vh;
+  height: 30.7vh;
   margin: 0 auto;
   margin-top: 2vh;
   margin-bottom: 2vh;
+  border-radius: 1rem;
 }
 .title{
   font:normal bolder 3vh "微软雅黑",arial,sans-serif;
@@ -69,10 +70,10 @@
 }
 .imageCover{
   /* margin-left: 3vh; */
-  margin-top: 0.7vh;
+  margin-top: 1.5vh;
   width: 10vh;
   height: 10vh;
-  border-radius: 5%;
+  border-radius: 1rem;
   margin-left: 1vh;
 }
 

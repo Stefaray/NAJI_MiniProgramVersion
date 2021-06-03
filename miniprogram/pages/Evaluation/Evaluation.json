@@ -1,5 +1,5 @@
 {
   "component": true,
-  "navigationStyle":"custom",
+  "navigationBarTitleText": "探索自己",
   "usingComponents": {}
 }

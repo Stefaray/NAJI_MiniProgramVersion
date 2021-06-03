@@ -15,6 +15,22 @@ plugin
   .use(timeRange)
   .use(holidays)
 
+// 日期格式化
+Date.prototype.Format = function (fmt) { //author: meizz 
+  var o = {
+      "M+": this.getMonth() + 1, //月份 
+      "d+": this.getDate(), //日 
+      "h+": this.getHours(), //小时 
+      "m+": this.getMinutes(), //分 
+      "s+": this.getSeconds(), //秒 
+      "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+      "S": this.getMilliseconds() //毫秒 
+  };
+  if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+  for (var k in o)
+  if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+  return fmt;
+}
 
 Component({
   /**
@@ -29,36 +45,6 @@ Component({
    */
   data: {
     //*******总页面********//
-    // dataArr:[
-    //   {
-    //     date:"2021-04-16",
-    //     isFinish: false,
-    //     choice:[0,0,0,0,0,0],
-    //     rate:0,
-    //     happyThing:[
-    //         {
-    //             photoURL:"",
-    //             happyThingText:"",
-    //             isSharing:false
-    //         }
-    //     ],
-    //     note:'<p>2021/04/16</p><p>32432</p><ol><li>32432432</li><li>432</li></ol><ul><li>4234234234</li><li>456</li></ul><p>54654</p><p>65</p><p>46</p><p>5</p><p>6</p><p>65<strong>很多事难<u>32442343243</u></strong></p><p><strong><u>3243</u></strong></p><p><strong><u>24</u></strong></p><p><strong><u>32</u></strong></p><p><strong><u>424</u></strong></p>'
-    //   },
-    //   {
-    //     date:"2021-04-17",
-    //     isFinish: false,
-    //     choice:[0,0,0,0,0,0],
-    //     rate:0,
-    //     happyThing:[
-    //         {
-    //             photoURL:"",  
-    //             happyThingText:"",
-    //             isSharing:false
-    //         }
-    //     ],
-    //     note:'<p>2021/04/17</p><p>32432</p><ol><li>32432432</li><li>432</li></ol><ul><li>4234234234</li><li>456</li></ul><p>54654</p><p>65</p><p>46</p><p>5</p><p>6</p><p>65<strong>很多事难<u>32442343243</u></strong></p><p><strong><u>3243</u></strong></p><p><strong><u>24</u></strong></p><p><strong><u>32</u></strong></p><p><strong><u>424</u></strong></p>'
-    //   },
-    // ],
     dataArr: [],
     // 页面索引
     curIndex:-1,
@@ -92,6 +78,19 @@ Component({
         theme: 'default'
       },
       dateArr:[],
+    // 随手小记弹窗数据
+    notePopUPShow:false,
+    keyBoard:false,
+    noteTmpPhotoList:[],
+    noteIsChange: false,
+    noteDialogShow: false,
+    noteDialogButtons:[{text: '不保存'}, {text: '保存'}],
+    tmpNotePhotoArr:[],
+
+    // 系统值
+    statusBarHeight:"",
+    navigatorHeight:"",
+
       
   },
 
@@ -101,6 +100,10 @@ Component({
   methods: {
     
     onLoad: function() {
+      this.setData({
+        statusBarHeight: wx.getSystemInfoSync().statusBarHeight,
+        navigatorHeight: ((wx.getMenuButtonBoundingClientRect().top - wx.getSystemInfoSync().statusBarHeight) * 2) + wx.getMenuButtonBoundingClientRect().height,
+      })
       const that = this
       // 单选题打乱顺序
       var notSortArr=new Array(); 
@@ -125,7 +128,15 @@ Component({
           that.data.dateArr = res.result.dateArr
           const calendar = that.selectComponent('#calendar').calendar
           const dates = res.result.dateArr
-          calendar['enableDates'](dates)
+          console.log(dates)
+          for(var i in dates){
+            var tmpSet = {year:dates[i].split("-")[0], month:dates[i].split("-")[1], date:dates[i].split("-")[2]}
+            dates[i] = tmpSet
+          }
+          calendar['setTodos']({
+            showLabelAlways: true,
+            dates
+          })
           
           // 设置单选题完成后的值
           for(var i in res.result.res){
@@ -230,22 +241,50 @@ Component({
       return random
     },
     afterTapDate(e) {
+
+      var tmpSet = {
+        happyThing:[],
+        date:"",
+        choice:[0,0,0,0,0,0],
+        isFinish:false,
+        rate:"",
+        note:"",
+      }
+      tmpSet.date = new Date(e.detail.year, e.detail.month-1, e.detail.date).Format("yyyy-MM-dd")
       const that = this
       console.log('afterTapDate', e.detail)
       var year = e.detail.year
       var month = e.detail.month
       if(this.data.nowYear==year && this.data.nowMonth==month){
-        for(var i in this.data.dataArr){
-          var dayInt = parseInt(this.data.dataArr[i].date.split("-")[2]) 
-          console.log(dayInt)
-          if(e.detail.date == dayInt){
-            this.data.curPage = i
-            this.setData({
-              curPage: this.data.curPage
-            })
-            break
+        if(e.detail.date < parseInt(this.data.dataArr[0].date.split("-")[2])){
+          that.data.dataArr.splice(0,0,tmpSet)
+          that.data.curPage = 0
+        }else{
+          var judge = false
+          for(var i in this.data.dataArr){
+            var dayInt = parseInt(this.data.dataArr[i].date.split("-")[2]) 
+            console.log(dayInt)
+            if(e.detail.date == dayInt){
+              that.data.curPage = i
+              judge = true
+              break
+            }
+            else if(e.detail.date < dayInt){
+              that.data.dataArr.splice(i,0,tmpSet)
+              that.data.curPage = i
+              judge = true
+              break
+            }
+          }
+          if(!judge){
+            that.data.curPage = that.data.dataArr.length
+            that.data.dataArr.splice(that.data.dataArr.length,0,tmpSet)
           }
         }
+        that.setData({
+          dataArr:that.data.dataArr,
+          curPage:that.data.curPage
+        })
       }
       else{
         // 单选题打乱顺序
@@ -266,20 +305,36 @@ Component({
             that.data.nowYear = curYear
             that.data.nowMonth = curMonth
 
-            for(var i in res.result.res){
-              var dayInt = parseInt(res.result.res[i].date.split("-")[2]) 
-              console.log(dayInt)
-              if(e.detail.date == dayInt){
-                that.data.curPage = i
-                break
+            
+            if(e.detail.date < parseInt(res.result.res[0].date.split("-")[2])){
+              res.result.res.splice(0,0,tmpSet)
+              that.data.curPage = 0
+            }else{
+              var judge = false
+              for(var i in res.result.res){
+                var dayInt = parseInt(res.result.res[i].date.split("-")[2]) 
+                if(e.detail.date == dayInt){
+                  that.data.curPage = i
+                  judge = true
+                  break
+                }
+                else if(e.detail.date < dayInt){
+                  res.result.res.splice(i,0,tmpSet)
+                  that.data.curPage = i
+                  judge = true
+                  break
+                }
+              }
+              if(!judge){
+                that.data.curPage = res.result.res.length
+                res.result.res.splice(res.result.res.length,0,tmpSet)
               }
             }
-            console.log(res.result)
-            // 日历日期映射
-            // that.data.dateArr = res.result.dateArr
-            // const calendar = that.selectComponent('#calendar').calendar
-            // const dates = res.result.dateArr
-            // calendar['enableDates'](dates)
+            that.setData({
+              dataArr:res.result.res,
+              curPage:that.data.curPage
+            })
+            console.log(res.result.res)
             
             // 设置单选题完成后的值
             for(var i in res.result.res){
@@ -604,32 +659,268 @@ Component({
     // *****随手小记事件 begin *****//
 
     // rich-text点击
-    editNote: function(e){
-      // console.log(e.currentTarget.dataset.totalindex);
-      this.data.curIndex = e.currentTarget.dataset.totalindex
-      wx.navigateTo({
-        url:'editor/editor'
-      })
-    },
-
-
-    bindHappyThingFormSubmit: function(e) {
-      console.log(e.detail.value.textarea)
-    },
-  
-    bindButtonTap: function() {
+    // editNote: function(e){
+    //   // console.log(e.currentTarget.dataset.totalindex);
+    //   this.data.curIndex = e.currentTarget.dataset.totalindex
+    //   wx.navigateTo({
+    //     url:'editor/editor'
+    //   })
+    // },
+    // 随手小记弹窗层
+    showPopup(e){
+      
+      console.log(e)
+      const that = this
+      for(var i in that.data.dataArr[e.currentTarget.dataset.totalindex].notePhoto){
+        that.data.tmpNotePhotoArr.push(that.data.dataArr[e.currentTarget.dataset.totalindex].notePhoto[i])
+      }
+      wx.createSelectorQuery().select('#editor').context(function(res) {
+        that.editorCtx = res.context
+        setTimeout(function(){
+          var nowIndex = e.currentTarget.dataset.totalindex
+          console.log(that.data.dataArr[nowIndex].note)
+          that.editorCtx.setContents({
+            html:that.data.dataArr[nowIndex].note,
+            success:function(res){
+              console.log('***随手小记文本获取成功***')
+            }
+          })
+          that.editorCtx.blur()
+          
+        },50);
+      }).exec()
+      
       this.setData({
-        focus: true
+        notePopUPShow:true,
+        curIndex: e.currentTarget.dataset.totalindex
       })
     },
-    bindTextAreaBlur: function(e) {
-      console.log(e.detail.value)
-    },
-    bindFormSubmit: function(e) {
-      console.log(e.detail.value.textarea)
+    onPopupClose(e){
+      console.log(e)
+      if(!this.data.noteIsChange){
+        this.setData({
+          notePopUPShow:false,
+          noteIsChange: false,
+        })
+      }
+      else{
+        this.setData({
+          noteDialogShow:true,
+        })
+      }
+      
     },
 
+    // 随手小记-富文本编辑器
+    // 初始化编辑器
+    onEditorReady() {
+      console.log('onEditorReady')
+      wx.createSelectorQuery().select('#editor').context(function(res) {
+        this.editorCtx = res.context
+      }).exec()
+    },
+    // 返回选区已设置的样式
+    onStatusChange(e) {
+      console.log(e.detail)
+      const formats = e.detail
+      this.setData({
+        formats
+      })
+    },
+    // 内容改变
+    onContentChange(e){
+      this.setData({
+        noteIsChange: true
+      })
+    },
+    onFocus(e){
+      console.log(e)
+      const that = this
+      that.setData({
+        keyBoard:true
+      })
+    },
+    // 失去焦点
+    onNoFocus(e) {
+      const that = this
+      that.setData({
+        keyBoard:false
+      })
+    },
+    convertToBase64(i){
+      const that = this
+      var p = new Promise(function(resolve,reject){
+        if(that.data.dataArr[that.data.curIndex].notePhoto[i].url.substr(0,5) == 'cloud'){
+          resolve(that.data.dataArr[that.data.curIndex].notePhoto[i].url)
+        }
+        else{
+          wx.getFileSystemManager().readFile({
+            filePath: that.data.dataArr[that.data.curIndex].notePhoto[i].url, //选择图片返回的相对路径
+            encoding: 'base64', //编码格式
+            success: res => { //成功的回调
+              resolve(res.data)
+            }
+          })
+        }
+      })
+      return p;
+    },
+    async generateBase64Arr(){
+      const that = this
+      var base64Res = []
+      for(var i in that.data.dataArr[that.data.curIndex].notePhoto){
+        await that.convertToBase64(i).then(function(res){
+          base64Res.push(res)
+        })
+      }
+      return base64Res;
+    },
+    // 获取内容
+     saveNote(e) {
+      const that = this
+      that.editorCtx.getContents({
+        success: function(res) {
+          that.generateBase64Arr().then(function(resPhoto){
+            //*********上传数据库********//
+            wx.cloud.callFunction({
+              name:'noteUpload',
+              data:{
+                curDate: that.data.dataArr[that.data.curIndex].date,
+                noteHTML: res.html,
+                notePhoto: resPhoto,
+              },
+              success:function(result){
+                console.log('****执行云函数noteUpload成功****')
+                that.data.dataArr[that.data.curIndex].note = res.html
+                console.log(that.data.curIndex)
+                console.log(that.data.dataArr[that.data.curIndex])
+                wx.showToast({
+                  title: '保存成功',
+                  duration:1500,
+                  icon:"success"
+                })
+                that.setData({
+                  notePopUPShow:false,
+                  noteIsChange: false,
+                  noteDialogShow: false,
+                  dataArr: that.data.dataArr,
+                  tmpNotePhotoArr:[],
+                })
+              },
+              fail:function(res){
+                console.error('****执行云函数noteUpload失败****')
+                wx.showToast({
+                  title: '存在过大的图片',
+                  duration:1500,
+                  icon:"fail"
+                })
+              }
+            })
+          })
+        },
+        fail:function(res){
+          console.error(res)
+        }
+      })
+    },
+    // 清空所有
+    clear() {
+      this.editorCtx.clear({
+        success: function(res) {
+          console.log("清空成功")
+        }
+      })
+    },
+    // 清除样式
+    removeFormat() {
+      this.editorCtx.removeFormat()
+    },
+    // 记录样式
+    format(e) {
+      let {
+        name,
+        value
+      } = e.target.dataset
+      if (!name) return
+      this.editorCtx.format(name, value)
+    },
+    // 编辑器上传图片函数
+    afterDelete(e){
+      for(var i in this.data.dataArr[this.data.curIndex].notePhoto){
+        if(e.detail.file.url == this.data.dataArr[this.data.curIndex].notePhoto[i].url){
+          this.data.dataArr[this.data.curIndex].notePhoto.splice(i,1)
+          this.setData({
+            dataArr: this.data.dataArr,
+            noteIsChange: true
+          })
+          break
+        }
+      }
+    },
+    beforeReadPhotoList(event) {
+      var judge = true
+      const { file, callback } = event.detail;
+      console.log(event.detail)
+      for(var i in file){
+        if(file[i].url.split(".")[1].toLowerCase()=="jpg"  ||
+           file[i].url.split(".")[1].toLowerCase()=="png"  || 
+           file[i].url.split(".")[1].toLowerCase()=="jfif" ||
+           file[i].url.split(".")[1].toLowerCase()=="jp2"  ||
+           file[i].url.split(".")[1].toLowerCase()=="gif"  ||
+           file[i].url.split(".")[1].toLowerCase()=="tiff" ||
+           file[i].url.split(".")[1].toLowerCase()=="wxif" ||
+           file[i].url.split(".")[1].toLowerCase()=="wbmp" ||
+           file[i].url.split(".")[1].toLowerCase()=="mbm"  ||
+           file[i].url.split(".")[1].toLowerCase()=="bmp"  ||
+           file[i].url.split(".")[1].toLowerCase()=="jpeg"){
+            continue;
+        } 
+        else{
+          wx.showToast({
+            title: '出现不符合格式的文件，请重传图片类型的文件',
+            duration:1500,
+            icon:"none",
+          })
+          console.log("error")
+          callback(false);
+          judge = false
+          break;
+        }
+      }
+      if(judge)
+      callback(true)
+    },
+    afterReadPhotoList(e){
+      console.log(e.detail.file)
+      for(var i in e.detail.file){
+        this.data.dataArr[this.data.curIndex].notePhoto.push({url:e.detail.file[i].url})
+      }
+      this.setData({
+        dataArr: this.data.dataArr,
+        noteIsChange: true,
+      })
+    },
+    // 未保存提示
+    tapNoteDialogButton(e){
+      console.log(e.detail.item.text)
+      console.log(this.data.tmpNotePhotoArr)
+      console.log(this.data.curIndex)
+      if(e.detail.item.text == '不保存'){
+        this.data.dataArr[this.data.curIndex].notePhoto = this.data.tmpNotePhotoArr
+        this.setData({
+          noteIsChange: false,
+          noteDialogShow: false,
+          notePopUPShow: false,
+          dataArr: this.data.dataArr,
+          tmpNotePhotoArr:[],
 
+        })
+        console.log(this.data.dataArr[this.data.curIndex])
+      }
+      else{
+        this.saveNote()
+      }
+    }
 
   }
 })

@@ -34,7 +34,7 @@
 }
 .title{
   flex: 6;
-  font:normal bolder 3vh "微软雅黑",arial,sans-serif;
+  font:normal bolder 26rpx "微软雅黑",arial,sans-serif;
   color: #448088;
   line-height: 9vh;
 }

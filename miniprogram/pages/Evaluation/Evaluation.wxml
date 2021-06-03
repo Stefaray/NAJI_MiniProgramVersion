@@ -1,8 +1,8 @@
 <!--pages/Evaluation/Evaluation.wxml-->
 
-<view class="navigatorBra">
+<!-- <view class="navigatorBra">
   <view class="edit_title">探索自己</view>
-</view>
+</view> -->
 <view class="fiveDimension" bindtap="fiveDimension">
   <image class="fiveCover" style="width:450rpx" src="../../style/evaluation/1.png"></image>
   <view class="title">五个维度全方位了解自己</view>
@@ -14,7 +14,7 @@
   </view>
   <view class="titDesc">
     <view class="sectitle">测测真实的自尊水平</view>
-    <view class="description">Lorem ipsum dolor sit amet</view>
+    <view class="description"></view>
   </view>
 </view>
 <view class="nervous" bindtap="nervous">
@@ -23,7 +23,7 @@
   </view>
   <view class="titDesc">
     <view class="sectitle">测测你的焦虑水平</view>
-    <view class="description">Lorem ipsum dolor sit amet</view>
+    <view class="description"></view>
   </view>
 </view>
 <view class="weekStatus" bindtap="weekStatus">
@@ -32,6 +32,6 @@
   </view>
   <view class="titDesc">
     <view class="sectitle">一周状态测试</view>
-    <view class="description">Lorem ipsum dolor sit amet</view>
+    <view class="description"></view>
   </view>
 </view>

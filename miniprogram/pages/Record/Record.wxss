@@ -52,7 +52,7 @@
   height: 5.5vh;
 }
 .navigatorBra{
-  height: 12vh;
+  /* height: 12vh; */
   background-color: #f5f9fa;
 }
 .dayConcludeButton{
@@ -120,7 +120,7 @@
   margin-left: 0rpx;
   font:normal normal 25rpx "微软雅黑",arial,sans-serif;
   color: #448088;
-  border-radius: 20%;
+  border-radius: 1rem;
   text-align: center;
   /* float: left; */
 }
@@ -312,14 +312,14 @@
   width: 95%;
   margin: 0 auto;
   height: 10%;
-  border: 3rpx solid #000;
+  /* border: 3rpx solid #000; */
   align-items: center;
   justify-content: space-between;
 
 }
 .notePopUpPublishButton{
   height: 80%;
-  background-color: #07C160;
+  background-color: #448088;
   font:normal normal 28rpx "微软雅黑",arial,sans-serif;
   color: white;
   padding:20rpx 0;
@@ -337,14 +337,14 @@
   width: 95%;
   margin: 0 auto;
   height: 40%;
-  border: 3rpx solid #000;
+  /* border: 3rpx solid #000; */
   margin-bottom: 1vh;
 }
 /* 图片编辑 */
 .notePopUpUploadPhoto{
   width: 95%;
   margin: 0 auto;
-  border: 3rpx solid #000;
+  /* border: 3rpx solid #000; */
 }
 /* 随手小记弹出层 end */
 
@@ -392,20 +392,20 @@
 .toolbar {
   box-sizing: border-box;
   padding: 0 10px;
-  height: 9vh;
+  height: 100%;
   width: 100%;
   position: fixed;
   left: 0;
   right: 100%;
   /* top: 12vh; */
-  bottom:0;
+  /* bottom:0; */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #ECECEC;
+  /* border: 1px solid #ECECEC; */
   border-left: none;
   border-right: none;
-  background-color: #f5f9fa;
+  /* background-color: #f5f9fa; */
   /* z-index:1; */
 }
 .finish{

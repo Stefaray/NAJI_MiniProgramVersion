@@ -15,9 +15,10 @@
         <view class="space2"></view>
         <view class="scaleProfileTitle">量表简介</view>
         <view class="scaleProfileContent">
-          <text user-select="{{true}}">
+          <!-- <text user-select="{{true}}">
             {{scaleProfileContent}}
-          </text>
+          </text> -->
+          <rich-text nodes="{{scaleProfileContent}}"></rich-text>
         </view>
       </scroll-view>
       <view class="useIntroduce">

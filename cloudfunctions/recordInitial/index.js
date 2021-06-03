@@ -120,6 +120,7 @@ exports.main = async (event, context) => {
     }
   }
   // 遍历随手小记
+  // console.log(note.data)
   for(var i in note.data){
     dateSet[note.data[i].date.Format("yyyy-M-d")] = ''
     if(note.data[i].date.getFullYear()==event.curYear && note.data[i].date.getMonth()+1==event.curMonth){
@@ -129,6 +130,9 @@ exports.main = async (event, context) => {
         if(dataArr[j].date == nowDate){
           judge = true
           dataArr[j].note = note.data[i].noteHTML
+          if(typeof(note.data[i].notePhoto) == 'undefined')
+           note.data[i].notePhoto = []
+          dataArr[j].notePhoto = note.data[i].notePhoto
           break;
         }
       }
@@ -137,6 +141,9 @@ exports.main = async (event, context) => {
         newObj.happyThing = []
         newObj.date = nowDate
         newObj.note = note.data[i].noteHTML
+        if(typeof(note.data[i].notePhoto) == 'undefined')
+           note.data[i].notePhoto = []
+        newObj.notePhoto = note.data[i].notePhoto
         newObj.rate = ''
         newObj.isFinish = false
         newObj.choice = [0,0,0,0,0,0]
@@ -144,9 +151,7 @@ exports.main = async (event, context) => {
       }
     }
   }
-  dataArr.sort(function(a,b){
-      return b.date<a.date;    // -1 升序排列 
-  })
+
 
   var mydate = new Date()
   mydate.setHours(mydate.getHours() + 8);
@@ -174,6 +179,10 @@ exports.main = async (event, context) => {
     }
     
   }
+  for(var i in dataArr){
+    if(typeof(dataArr[i].notePhoto) == 'undefined')
+      dataArr[i].notePhoto = []
+  }
 
   
 
@@ -181,8 +190,27 @@ exports.main = async (event, context) => {
   for(var i in dateSet){
     dateArr.push(i)
   }
-  console.log(dateSet)
-  console.log(dateArr)
+
+  console.log(dataArr)
+  dataArr.sort(function(a,b){
+      var judge = Date.parse(new Date(b.date)) < Date.parse(new Date(a.date))
+      return judge;    // -1 升序排列 
+  })
+  console.log('-------------------------------------------------')
+  console.log(dataArr)
+  for(var i=0; i<dataArr.length-1; i++){
+    for(var j=0; j<dataArr.length-1-i; j++){
+      if(dataArr[j].date > dataArr[j+1].date){
+        var t = dataArr[j].date;
+        dataArr[j].date = dataArr[j+1].date
+        dataArr[j+1].date = t
+      }
+    }
+  }
+  console.log('-------------------------------------------------')
+  console.log(dataArr)
+
+  
   return {
     res: dataArr,
     dateArr: dateArr,

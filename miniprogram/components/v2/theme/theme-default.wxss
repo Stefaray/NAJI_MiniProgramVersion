@@ -51,7 +51,7 @@
 }
 
 .default_todo-dot {
-    background-color: #e54d42;
+    background-color: #448088;
 }
 
 .default_date-desc {
