@@ -1,8 +1,12 @@
 <view class = "content">
   <view class = "selectDate">
-    <text class="prevMonth" bindtap="prevMonth"> ＜ </text>
-    <text class = "nowDate">{{year}}/{{month}}</text>
-    <text class="nextMonth" bindtap="nextMonth"> ＞ </text>
+    <!-- <view class="prevMonth" bindtap="prevMonth"> ＜ </view> -->
+    <view></view>
+    <image class="prevMonth"  src="cloud://stefaray-3gxwogx2a161685a.7374-stefaray-3gxwogx2a161685a-1305687531/left.svg" bindtap="prevMonth"></image>
+    <view class = "nowDate">{{year}}/{{month}}</view>
+    <image class="nextMonth" src="cloud://stefaray-3gxwogx2a161685a.7374-stefaray-3gxwogx2a161685a-1305687531/right.svg" bindtap="nextMonth"></image>
+    <view></view>
+    <!-- <view class="nextMonth" bindtap="nextMonth"> ＞ </view> -->
   </view>
   
   <view class = "stateChange">

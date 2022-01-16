@@ -168,7 +168,7 @@
       <view class="space"></view>
       <view class="nextButton" bindtap="next">下一页</view>
       <view class="space"></view>
-      <view class="finishButton {{scaleFinishStop==true?'finishBgc':''}}" bindtap="finish">完成</view>
+      <view class="finishButton {{scaleFinishStop==true?'finishBgc':''}}" bindtap="finish">{{scaleFinishStop==true?'完成':'稍后再做'}}</view>
     </view>
 </view>
 

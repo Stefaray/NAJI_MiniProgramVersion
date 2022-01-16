@@ -104,7 +104,12 @@ Component({
         })
       }
     },
-
+    onShow: function() {
+      wx.hideHomeButton({
+        success: function() {},
+      })
+    },
+    
     onLoad: function(e){
       const that = this
       console.log(e)

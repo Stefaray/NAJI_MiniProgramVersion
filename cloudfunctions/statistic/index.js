@@ -39,6 +39,15 @@ exports.main = async (event, context) => {
   var lineData = []
   var tmpGraphData = 0
   var tmpLineData = 0
+  for(var i=0; i<monthData.length-1; i++){
+    for(var j=i+1; j<monthData.length; j++){
+      if(Date.parse(monthData[i].date) > Date.parse(monthData[j].date)){
+        var tmp = monthData[i];
+        monthData[i] = monthData[j];
+        monthData[j] = tmp;
+      }
+    }
+  }
   if(event.type == 'prev' || event.type == 'next'){
     if(monthData.length==0){
       var user = await db.collection('user').doc(wxContext.OPENID).get()
@@ -82,6 +91,7 @@ exports.main = async (event, context) => {
       graphData.push(perData)
       // Line
       lineData.push(tmpLineData)
+      
     }
     return {
       graphRes: graphData,

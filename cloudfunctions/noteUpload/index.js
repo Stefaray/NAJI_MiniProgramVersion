@@ -9,33 +9,33 @@ cloud.init({
 // 1. 获取数据库引用
 const db = cloud.database()
 
-async function generateFileID(notePhoto, curDate, OPENID){
-  var fileIDArr = []
-  // for(var i in notePhoto){
-  //   var checkStr = notePhoto[i].substr(0,5)
-  //   if(checkStr == 'cloud'){
-  //     var res = await cloud.uploadFile({
-  //       cloudPath: 'note' + '_' + curDate + '_' + i + '_' + new Date().toTimeString().substring(0,8) + '_' + OPENID  , // 上传至云端的路径
-  //       fileContent: notePhoto[i], // 小程序临时文件路径 
-  //     })
-  //     fileIDArr[i] = {url: res.fileID, isImage: true}
-  //   }
-  // }
-  for(var i in notePhoto){
-    var checkStr = notePhoto[i].substr(0,5)
-    if(checkStr != 'cloud'){
-      var res = await cloud.uploadFile({
-        cloudPath: 'note' + '_' + curDate + '_' + i + '_' + new Date().toTimeString().substring(0,8) + '_' + OPENID , // 上传至云端的路径
-        fileContent: Buffer.from(notePhoto[i], 'base64'), // 小程序临时文件路径 
-      })
-      fileIDArr[i] = {url: res.fileID, isImage: true}
-    }
-    else{
-      fileIDArr[i] = {url: notePhoto[i], isImage: true}
-    }
-  }
-  return fileIDArr
-}
+// async function generateFileID(notePhoto, curDate, OPENID){
+//   var fileIDArr = []
+//   // for(var i in notePhoto){
+//   //   var checkStr = notePhoto[i].substr(0,5)
+//   //   if(checkStr == 'cloud'){
+//   //     var res = await cloud.uploadFile({
+//   //       cloudPath: 'note' + '_' + curDate + '_' + i + '_' + new Date().toTimeString().substring(0,8) + '_' + OPENID  , // 上传至云端的路径
+//   //       fileContent: notePhoto[i], // 小程序临时文件路径 
+//   //     })
+//   //     fileIDArr[i] = {url: res.fileID, isImage: true}
+//   //   }
+//   // }
+//   for(var i in notePhoto){
+//     var checkStr = notePhoto[i].substr(0,5)
+//     if(checkStr != 'cloud'){
+//       var res = await cloud.uploadFile({
+//         cloudPath: 'note' + '_' + curDate + '_' + i + '_' + new Date().toTimeString().substring(0,8) + '_' + OPENID , // 上传至云端的路径
+//         fileContent: Buffer.from(notePhoto[i], 'base64'), // 小程序临时文件路径 
+//       })
+//       fileIDArr[i] = {url: res.fileID, isImage: true}
+//     }
+//     else{
+//       fileIDArr[i] = {url: notePhoto[i], isImage: true}
+//     }
+//   }
+//   return fileIDArr
+// }
 
 // 云函数入口函数
 exports.main = async (event, context) => {
@@ -50,9 +50,9 @@ exports.main = async (event, context) => {
   }).get()
 
   console.log(hasData)
-
-  generateFileID(event.notePhoto, event.curDate,  wxContext.OPENID).then(function(fileIDArr){
-    console.log(fileIDArr)
+  var fileIDArr = event.notePhoto
+  // generateFileID(event.notePhoto, event.curDate,  wxContext.OPENID).then(function(fileIDArr){
+  //   console.log(fileIDArr)
     if(hasData.data.length == 0 || hasData === {}){
       db.collection('note').add({
         data:{
@@ -93,6 +93,6 @@ exports.main = async (event, context) => {
     return {
       res: 'success',
     }
-  })
+  // })
   
 }

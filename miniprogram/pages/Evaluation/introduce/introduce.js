@@ -60,22 +60,22 @@ Component({
     test(){
       switch(this.data.title){
         case('fiveDimension'):
-          wx.navigateTo({
+          wx.reLaunch({
             url: '../paper/paper?title=fiveDimension',
           })
           break;
         case('selfEsteem'):
-          wx.navigateTo({
+          wx.reLaunch({
             url: '../paper/paper?title=selfEsteem',
           })
           break;
         case('nervous'):
-          wx.navigateTo({
+          wx.reLaunch({
             url: '../paper/paper?title=nervous',
           })
           break;
         case('weekStatus'):
-          wx.navigateTo({
+          wx.reLaunch({
             url: '../paper/paper?title=weekStatus',
           })
           break;

@@ -6,7 +6,22 @@
 }
 
 .selectDate {
-  color: #448088
+  margin-top: 1vh;
+  color: #448088;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 50rpx;
+  width: 750rpx;
+}
+.prevMonth, .nextMonth{
+  height: 60%;
+  /* font-weight: 1000; */
+  /* flex: 1; */
+}
+.nowDate{
+  /* flex: 1; */
 }
 
 .stateChange {
@@ -16,14 +31,16 @@
   border-width: 4rpx;
   border-color: #d8d8d8;
   border-radius: 3%;
-  height:550rpx;
+  height:520rpx;
   width:680rpx;
   box-shadow: rgb(196, 196, 196) 0rpx 0rpx 3rpx;
 }
 
+
 .stateCalendar {
   border:solid;
   margin:20rpx;
+  margin-top: 10rpx;
   text-align: center;
   border-width: 4rpx;
   border-color: #d8d8d8;
@@ -66,7 +83,4 @@
 ec-canvas {
   width: 600rpx;
   height: 600rpx
-}
-.prevMonth, .nextMonth{
-  font-weight: 700;
 }

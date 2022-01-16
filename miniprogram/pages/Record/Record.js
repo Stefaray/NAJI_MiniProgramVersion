@@ -557,9 +557,9 @@ Component({
         prevText = ''
       }
       this.data.dataArr[cur_index].happyThing[cur_happythingindex].happyThingText = e.detail.value
-      // this.setData({
-      //   dataArr: this.data.dataArr
-      // })
+      this.setData({
+        dataArr: this.data.dataArr
+      })
 
       // 上传happyThingText到云函数
       if(prevText != e.detail.value){
@@ -596,7 +596,7 @@ Component({
         this.data.dataArr[cur_index].happyThing.push(tempObj)
       }
       console.log(this.data.dataArr[cur_index].happyThing[cur_happythingindex])
-      if(typeof(this.data.dataArr[cur_index].happyThing[cur_happythingindex].photoURL)=='undefined'||this.data.dataArr[cur_index].happyThing[cur_happythingindex].photoURL=="" && typeof(this.data.dataArr[cur_index].happyThing[cur_happythingindex].happyThingText)=='undefined'||this.data.dataArr[cur_index].happyThing[cur_happythingindex].happyThingText==""){
+      if((typeof(this.data.dataArr[cur_index].happyThing[cur_happythingindex].photoURL)=='undefined'||this.data.dataArr[cur_index].happyThing[cur_happythingindex].photoURL=="") && (typeof(this.data.dataArr[cur_index].happyThing[cur_happythingindex].happyThingText)=='undefined'||this.data.dataArr[cur_index].happyThing[cur_happythingindex].happyThingText=="")){
         wx.showToast({
           title: '您还未记录快乐事~',
           icon: 'none',
@@ -685,7 +685,7 @@ Component({
               console.log('***随手小记文本获取成功***')
             }
           })
-          that.editorCtx.blur()
+          // that.editorCtx.blur()
           
         },50);
       }).exec()
@@ -768,16 +768,31 @@ Component({
     async generateBase64Arr(){
       const that = this
       var base64Res = []
-      for(var i in that.data.dataArr[that.data.curIndex].notePhoto){
-        await that.convertToBase64(i).then(function(res){
-          base64Res.push(res)
-        })
+      var OPENID = wx.getStorageSync('openid')
+      var notePhoto = that.data.dataArr[that.data.curIndex].notePhoto
+      var date = that.data.dataArr[that.data.curIndex].date
+      for(var i in notePhoto){
+        var checkStr = notePhoto[i].url.substr(0,5)
+        if(checkStr != 'cloud'){
+          var res = await wx.cloud.uploadFile({
+            cloudPath: 'note' + '_' + date + '_' + i + '_' + new Date().toTimeString().substring(0,8) + '_' + OPENID , // 上传至云端的路径
+            filePath: notePhoto[i].url, // 小程序临时文件路径 
+          })
+          base64Res[i] = {url: res.fileID, isImage: true}
+        }
+        else{
+          base64Res[i] = {url: notePhoto[i].url, isImage: true}
+        }
+        // await that.convertToBase64(i).then(function(res){
+        //   base64Res.push(res)
+        // })
       }
       return base64Res;
     },
     // 获取内容
      saveNote(e) {
       const that = this
+      wx.showToast({title: '加载中', icon: 'loading', duration: 10000});
       that.editorCtx.getContents({
         success: function(res) {
           that.generateBase64Arr().then(function(resPhoto){
@@ -794,6 +809,7 @@ Component({
                 that.data.dataArr[that.data.curIndex].note = res.html
                 console.log(that.data.curIndex)
                 console.log(that.data.dataArr[that.data.curIndex])
+                wx.hideToast();
                 wx.showToast({
                   title: '保存成功',
                   duration:1500,
@@ -809,6 +825,7 @@ Component({
               },
               fail:function(res){
                 console.error('****执行云函数noteUpload失败****')
+                wx.hideToast();
                 wx.showToast({
                   title: '存在过大的图片',
                   duration:1500,
